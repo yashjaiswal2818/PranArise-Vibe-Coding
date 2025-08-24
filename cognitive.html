@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognitive Fitness Zone - PranArise</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
+            min-height: 100vh;
+            color: #f8fafc;
+            overflow-x: hidden;
+            position: relative;
+        }
+       
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 25%, rgba(51, 65, 85, 0.9) 50%, rgba(71, 85, 105, 0.9) 75%, rgba(100, 116, 139, 0.9) 100%);
+        }
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: float 20s ease-in-out infinite;
+        }
+        .bg-shape:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: rgba(59, 130, 246, 0.1);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        .bg-shape:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            background: rgba(139, 92, 246, 0.1);
+            top: 40%;
+            right: 20%;
+            animation-delay: -7s;
+        }
+        .bg-shape:nth-child(3) {
+            width: 350px;
+            height: 350px;
+            background: rgba(6, 182, 212, 0.1);
+            bottom: 20%;
+            left: 30%;
+            animation-delay: -14s;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-30px) rotate(90deg);
+            }
+            50% {
+                transform: translateY(0px) rotate(180deg);
+            }
+            75% {
+                transform: translateY(30px) rotate(270deg);
+            }
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+      
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .nav-brand:hover {
+            transform: scale(1.05);
+        }
+        .nav-icon {
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        .brand-text {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #e2e8f0;
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+        }
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #3b82f6;
+            transform: translateY(-2px);
+        }
+        .nav-link:hover::before {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: #3b82f6;
+        }
+        .nav-link.active::before {
+            width: 100%;
+        }
+        .nav-cta {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6);
+        }
+     
+        .main-content {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        .page-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(59, 130, 246, 0.1);
+            backdrop-filter: blur(10px);
+            color: #3b82f6;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+        }
+        .page-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            color: #f8fafc;
+            text-shadow: 0 0 50px rgba(59, 130, 246, 0.3);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 30%, #06b6d4 60%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .page-description {
+            font-size: 20px;
+            color: #cbd5e1;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+   
+        .dashboard {
+            background: rgba(248, 250, 252, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: rgba(248, 250, 252, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            color: #cbd5e1;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .game-card {
+            background: rgba(248, 250, 252, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 40px 30px;
+            border-radius: 24px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .game-card:hover::before {
+            opacity: 1;
+        }
+        .game-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(59, 130, 246, 0.3);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+        .game-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .game-card:hover .game-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .memory-icon {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(99, 102, 241, 0.2) 100%);
+            color: #3b82f6;
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3);
+        }
+        .math-icon {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%);
+            color: #10b981;
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
+        }
+        .reaction-icon {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(124, 58, 237, 0.2) 100%);
+            color: #8b5cf6;
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.3);
+        }
+        .stroop-icon {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(14, 165, 233, 0.2) 100%);
+            color: #06b6d4;
+            box-shadow: 0 15px 35px rgba(6, 182, 212, 0.3);
+        }
+        .pattern-icon {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(234, 88, 12, 0.2) 100%);
+            color: #f97316;
+            box-shadow: 0 15px 35px rgba(249, 115, 22, 0.3);
+        }
+        .word-icon {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%);
+            color: #ef4444;
+            box-shadow: 0 15px 35px rgba(239, 68, 68, 0.3);
+        }
+        .game-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #f8fafc;
+            position: relative;
+            z-index: 1;
+        }
+        .game-description {
+            color: #cbd5e1;
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+        .btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6);
+        }
+        .btn-secondary {
+            background: rgba(248, 250, 252, 0.1);
+            color: #cbd5e1;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+        }
+      
+        .game-screen {
+            display: none;
+            background: rgba(248, 250, 252, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease-out;
+        }
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .game-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+        .game-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .info-item {
+            background: rgba(59, 130, 246, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+       
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        .memory-card {
+            aspect-ratio: 1;
+            background: rgba(248, 250, 252, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        .memory-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+        }
+        .memory-card.flipped {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+            color: #3b82f6;
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+        .memory-card.matched {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);
+            color: #10b981;
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+       
+        .question-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .question {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: #f8fafc;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        .option-btn {
+            padding: 24px;
+            font-size: 1.3rem;
+            border-radius: 16px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            background: rgba(248, 250, 252, 0.05);
+            backdrop-filter: blur(20px);
+            color: #f8fafc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        .option-btn:hover {
+            transform: translateY(-3px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+        }
+        .option-btn.correct {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);
+            color: #10b981;
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+        .option-btn.incorrect {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 127, 0.2) 100%);
+            color: #ef4444;
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+   
+        .reaction-area {
+            width: 100%;
+            height: 320px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 24px 0;
+            border: 3px solid rgba(59, 130, 246, 0.1);
+            text-align: center;
+            user-select: none;
+        }
+        .reaction-waiting {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 127, 0.2) 100%);
+            color: #ef4444;
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+        .reaction-waiting:hover {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(220, 38, 127, 0.3) 100%);
+            border-color: rgba(239, 68, 68, 0.5);
+            transform: scale(1.02);
+        }
+        .reaction-ready {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(6, 182, 212, 0.4) 100%);
+            color: #ffffff;
+            border-color: rgba(16, 185, 129, 0.6);
+            animation: greenPulse 0.8s infinite;
+            font-size: 2rem;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
+        }
+        .reaction-clicked {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+            color: #ffffff;
+            border-color: rgba(59, 130, 246, 0.4);
+            font-size: 1.8rem;
+        }
+
+        @keyframes greenPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 50px rgba(16, 185, 129, 0.8);
+            }
+        }
+       
+        .stroop-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .stroop-word {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 40px;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+            user-select: none;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(248, 250, 252, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        .stroop-instructions {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin-bottom: 32px;
+            padding: 20px;
+            background: rgba(59, 130, 246, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .color-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        .color-btn {
+            padding: 24px;
+            font-size: 1.3rem;
+            border-radius: 16px;
+            border: 2px solid;
+            background: rgba(248, 250, 252, 0.05);
+            backdrop-filter: blur(20px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .color-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        .color-btn.red {
+            color: #ef4444;
+            border-color: #ef4444;
+        }
+        .color-btn.red:hover {
+            background: rgba(239, 68, 68, 0.1);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3);
+        }
+        .color-btn.blue {
+            color: #3b82f6;
+            border-color: #3b82f6;
+        }
+        .color-btn.blue:hover {
+            background: rgba(59, 130, 246, 0.1);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+        .color-btn.green {
+            color: #10b981;
+            border-color: #10b981;
+        }
+        .color-btn.green:hover {
+            background: rgba(16, 185, 129, 0.1);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        }
+        .color-btn.yellow {
+            color: #f59e0b;
+            border-color: #f59e0b;
+        }
+        .color-btn.yellow:hover {
+            background: rgba(245, 158, 11, 0.1);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+        }
+        .color-btn.correct {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+        .color-btn.incorrect {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 127, 0.2) 100%);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+        }
+        
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            max-width: 400px;
+            margin: 0 auto 40px;
+        }
+        .pattern-item {
+            aspect-ratio: 1;
+            background: rgba(248, 250, 252, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .pattern-item:hover {
+            transform: scale(1.05);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+        }
+        .pattern-item.selected {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+            color: #3b82f6;
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .word-display {
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #f8fafc;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+            padding: 30px;
+            background: rgba(248, 250, 252, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        .word-input {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 30px;
+            padding: 20px;
+            font-size: 1.2rem;
+            background: rgba(248, 250, 252, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            color: #f8fafc;
+            text-align: center;
+        }
+        .word-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+     
+        .results {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            margin: 24px 0;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .results h3 {
+            font-size: 2.2rem;
+            margin-bottom: 24px;
+            color: #f8fafc;
+        }
+        .score {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+        .stars {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+        }
+        .motivational-quote {
+            font-style: italic;
+            color: #cbd5e1;
+            margin: 24px 0;
+            padding: 24px;
+            background: rgba(248, 250, 252, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border-left: 4px solid #3b82f6;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+    
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(248, 250, 252, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 16px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            transition: width 0.3s ease;
+        }
+     
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+   
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .page-title {
+                font-size: 2.5rem;
+            }
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            .memory-grid {
+                max-width: 320px;
+                gap: 12px;
+            }
+            .memory-card {
+                font-size: 1.5rem;
+            }
+            .options-grid, .color-buttons {
+                grid-template-columns: 1fr;
+                max-width: 320px;
+            }
+            .game-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .game-info {
+                justify-content: center;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stroop-word {
+                font-size: 3rem;
+            }
+            .pattern-grid {
+                max-width: 300px;
+            }
+        }
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .reaction-area {
+                height: 240px;
+                font-size: 1.4rem;
+            }
+            .dashboard {
+                padding: 24px;
+            }
+            .game-screen {
+                padding: 24px;
+            }
+            .stroop-word {
+                font-size: 2.5rem;
+            }
+            .word-display {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="animated-bg">
+        <div class="bg-shape"></div>
+        <div class="bg-shape"></div>
+        <div class="bg-shape"></div>
+    </div>
+ 
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="fas fa-heart nav-icon" style="font-size: 32px; color: #3b82f6;"></i>
+                <span class="brand-text">PranArise</span>
+            </a>
+            <a href="index.html" class="nav-cta">
+                <i class="fas fa-user-md"></i>
+                Home
+            </a>
+        </div>
+    </nav>
+    <div class="container">
+        <main class="main-content">
+    
+            <div class="page-header">
+                <h1 class="page-title">
+                    Train Your <span class="gradient-text">Mind</span>
+                </h1>
+                <p class="page-description">
+                    Enhance your cognitive abilities with scientifically-designed brain training games. Improve memory, focus, and mental agility through engaging challenges.
+                </p>
+            </div>
+
+            <div id="dashboard" class="dashboard">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalGames">0</div>
+                        <div class="stat-label">Games Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="bestMemory">0</div>
+                        <div class="stat-label">Best Memory Score</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="bestMath">0%</div>
+                        <div class="stat-label">Best Math Score</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="bestStroop">0%</div>
+                        <div class="stat-label">Best Stroop Score</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="avgReaction">0ms</div>
+                        <div class="stat-label">Avg Reaction Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="bestPattern">0%</div>
+                        <div class="stat-label">Pattern Recognition</div>
+                    </div>
+                </div>
+                <div class="games-grid">
+                    <div class="game-card" onclick="startMemoryGame()">
+                        <div class="game-icon memory-icon">🧠</div>
+                        <h3 class="game-title">Memory Match</h3>
+                        <p class="game-description">Challenge your working memory by matching pairs of cards. Improve your recall and concentration skills.</p>
+                        <button class="btn">Start Training</button>
+                    </div>
+                    <div class="game-card" onclick="startMathQuiz()">
+                        <div class="game-icon math-icon">🔢</div>
+                        <h3 class="game-title">Quick Math</h3>
+                        <p class="game-description">Boost your mental arithmetic speed with timed math challenges. Enhance your numerical processing abilities.</p>
+                        <button class="btn">Start Training</button>
+                    </div>
+                    <div class="game-card" onclick="startStroopTest()">
+                        <div class="game-icon stroop-icon">🎨</div>
+                        <h3 class="game-title">Stroop Test</h3>
+                        <p class="game-description">Test your cognitive flexibility and attention control. Click the color of the text, not what the word says!</p>
+                        <button class="btn">Start Training</button>
+                    </div>
+                    <div class="game-card" onclick="startReactionTest()">
+                        <div class="game-icon reaction-icon">⚡</div>
+                        <h3 class="game-title">Reaction Speed</h3>
+                        <p class="game-description">Test and improve your reaction time and processing speed. Sharpen your reflexes and response accuracy.</p>
+                        <button class="btn">Start Training</button>
+                    </div>
+                    <div class="game-card" onclick="startPatternGame()">
+                        <div class="game-icon pattern-icon">🔍</div>
+                        <h3 class="game-title">Pattern Recognition</h3>
+                        <p class="game-description">Identify patterns and sequences to enhance visual processing and logical thinking abilities.</p>
+                        <button class="btn">Start Training</button>
+                    </div>
+                    <div class="game-card" onclick="startWordGame()">
+                        <div class="game-icon word-icon">📝</div>
+                        <h3 class="game-title">Word Association</h3>
+                        <p class="game-description">Improve verbal fluency and creative thinking through rapid word association challenges.</p>
+                        <button class="btn">Start Training</button>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <button class="btn btn-secondary" onclick="resetStats()">Reset Progress</button>
+                </div>
+            </div>
+            <div id="memoryGame" class="game-screen">
+                <div class="game-header">
+                    <h2>🧠 Memory Match Training</h2>
+                    <div class="game-info">
+                        <div class="info-item">Moves: <span id="memoryMoves">0</span></div>
+                        <div class="info-item">Time: <span id="memoryTime">0</span>s</div>
+                        <div class="info-item">Pairs: <span id="memoryPairs">0</span>/8</div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="showDashboard()">← Back</button>
+                </div>
+                <div class="memory-grid" id="memoryGrid"></div>
+                <div id="memoryResults" class="results" style="display: none;">
+                    <h3>🎉 Training Complete!</h3>
+                    <div class="score" id="memoryScore">0</div>
+                    <div class="stars" id="memoryStars"></div>
+                    <div class="motivational-quote" id="memoryQuote"></div>
+                    <button class="btn" onclick="startMemoryGame()">Train Again</button>
+                    <button class="btn btn-secondary" onclick="showDashboard()">Dashboard</button>
+                </div>
+            </div>
+      
+            <div id="mathQuiz" class="game-screen">
+                <div class="game-header">
+                    <h2>🔢 Quick Math Training</h2>
+                    <div class="game-info">
+                        <div class="info-item">Question: <span id="mathQuestion">1</span>/10</div>
+                        <div class="info-item">Score: <span id="mathScore">0</span></div>
+                        <div class="info-item">Time: <span id="mathTimer">30</span>s</div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="showDashboard()">← Back</button>
+                </div>
+                <div class="question-container">
+                    <div class="question" id="mathQuestionText">Loading...</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="mathProgress"></div>
+                    </div>
+                    <div class="options-grid" id="mathOptions"></div>
+                </div>
+                <div id="mathResults" class="results" style="display: none;">
+                    <h3>📊 Training Complete!</h3>
+                    <div class="score" id="mathFinalScore">0%</div>
+                    <div class="stars" id="mathStars"></div>
+                    <div class="motivational-quote" id="mathQuote"></div>
+                    <button class="btn" onclick="startMathQuiz()">Train Again</button>
+                    <button class="btn btn-secondary" onclick="showDashboard()">Dashboard</button>
+                </div>
+            </div>
+         
+            <div id="stroopTest" class="game-screen">
+                <div class="game-header">
+                    <h2>🎨 Stroop Test Training</h2>
+                    <div class="game-info">
+                        <div class="info-item">Round: <span id="stroopRound">1</span>/15</div>
+                        <div class="info-item">Score: <span id="stroopScore">0</span></div>
+                        <div class="info-item">Time: <span id="stroopTimer">60</span>s</div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="showDashboard()">← Back</button>
+                </div>
+                <div class="stroop-container">
+                    <div class="stroop-instructions">
+                        <strong>Instructions:</strong> Click the <strong>COLOR</strong> of the text, NOT what the word says!<br>
+                        Focus on the actual color you see, ignore the word meaning.
+                    </div>
+                    <div class="stroop-word" id="stroopWord">Ready?</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="stroopProgress"></div>
+                    </div>
+                    <div class="color-buttons" id="colorButtons">
+                        <button class="color-btn red" onclick="selectColor('red')">Red</button>
+                        <button class="color-btn blue" onclick="selectColor('blue')">Blue</button>
+                        <button class="color-btn green" onclick="selectColor('green')">Green</button>
+                        <button class="color-btn yellow" onclick="selectColor('yellow')">Yellow</button>
+                    </div>
+                </div>
+                <div id="stroopResults" class="results" style="display: none;">
+                    <h3>🎨 Training Complete!</h3>
+                    <div class="score" id="stroopFinalScore">0%</div>
+                    <div class="stars" id="stroopStars"></div>
+                    <div class="motivational-quote" id="stroopQuote"></div>
+                    <button class="btn" onclick="startStroopTest()">Train Again</button>
+                    <button class="btn btn-secondary" onclick="showDashboard()">Dashboard</button>
+                </div>
+            </div>
+       
+            <div id="reactionTest" class="game-screen">
+                <div class="game-header">
+                    <h2>⚡ Reaction Speed Training</h2>
+                    <div class="game-info">
+                        <div class="info-item">Round: <span id="reactionRound">1</span>/5</div>
+                        <div class="info-item">Best: <span id="reactionBest">0ms</span></div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="showDashboard()">← Back</button>
+                </div>
+                <div class="reaction-area reaction-waiting" id="reactionArea" onclick="handleReactionClick()">
+                    Click here when ready, then wait for GREEN!
+                </div>
+                <div id="reactionResults" class="results" style="display: none;">
+                    <h3>⚡ Training Complete!</h3>
+                    <div class="score" id="reactionAverage">0ms</div>
+                    <div class="stars" id="reactionStars"></div>
+                    <div class="motivational-quote" id="reactionQuote"></div>
+                    <button class="btn" onclick="startReactionTest()">Train Again</button>
+                    <button class="btn btn-secondary" onclick="showDashboard()">Dashboard</button>
+                </div>
+            </div>
+        
+            <div id="patternGame" class="game-screen">
+                <div class="game-header">
+                    <h2>🔍 Pattern Recognition Training</h2>
+                    <div class="game-info">
+                        <div class="info-item">Round: <span id="patternRound">1</span>/10</div>
+                        <div class="info-item">Score: <span id="patternScore">0</span></div>
+                        <div class="info-item">Time: <span id="patternTimer">45</span>s</div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="showDashboard()">← Back</button>
+                </div>
+                <div class="question-container">
+                    <div class="question">Complete the pattern:</div>
+                    <div class="pattern-grid" id="patternGrid"></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="patternProgress"></div>
+                    </div>
+                </div>
+                <div id="patternResults" class="results" style="display: none;">
+                    <h3>🔍 Training Complete!</h3>
+                    <div class="score" id="patternFinalScore">0%</div>
+                    <div class="stars" id="patternStars"></div>
+                    <div class="motivational-quote" id="patternQuote"></div>
+                    <button class="btn" onclick="startPatternGame()">Train Again</button>
+                    <button class="btn btn-secondary" onclick="showDashboard()">Dashboard</button>
+                </div>
+            </div>
+     
+            <div id="wordGame" class="game-screen">
+                <div class="game-header">
+                    <h2>📝 Word Association Training</h2>
+                    <div class="game-info">
+                        <div class="info-item">Round: <span id="wordRound">1</span>/10</div>
+                        <div class="info-item">Score: <span id="wordScore">0</span></div>
+                        <div class="info-item">Time: <span id="wordTimer">60</span>s</div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="showDashboard()">← Back</button>
+                </div>
+                <div class="question-container">
+                    <div class="word-display" id="wordDisplay">Ready?</div>
+                    <input type="text" class="word-input" id="wordInput" placeholder="Type a related word..." maxlength="20">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="wordProgress"></div>
+                    </div>
+                    <button class="btn" id="wordSubmit" onclick="submitWord()">Submit</button>
+                </div>
+                <div id="wordResults" class="results" style="display: none;">
+                    <h3>📝 Training Complete!</h3>
+                    <div class="score" id="wordFinalScore">0%</div>
+                    <div class="stars" id="wordStars"></div>
+                    <div class="motivational-quote" id="wordQuote"></div>
+                    <button class="btn" onclick="startWordGame()">Train Again</button>
+                    <button class="btn btn-secondary" onclick="showDashboard()">Dashboard</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        
+        let gameState = {
+            currentGame: 'dashboard',
+            stats: {
+                totalGames: 0,
+                bestMemoryScore: 0,
+                bestMathScore: 0,
+                bestStroopScore: 0,
+                bestPatternScore: 0,
+                reactionTimes: [],
+                avgReactionTime: 0
+            }
+        };
+
+        
+        let memoryGame = {
+            cards: [],
+            flippedCards: [],
+            matchedPairs: 0,
+            moves: 0,
+            startTime: null,
+            timer: null
+        };
+
+        let mathQuiz = {
+            questions: [],
+            currentQuestion: 0,
+            score: 0,
+            timer: null,
+            timeLeft: 30,
+            startTime: null
+        };
+
+       
+        let stroopTest = {
+            round: 0,
+            score: 0,
+            currentWord: '',
+            currentColor: '',
+            correctColor: '',
+            timer: null,
+            timeLeft: 60,
+            startTime: null,
+            words: ['RED', 'BLUE', 'GREEN', 'YELLOW'],
+            colors: ['red', 'blue', 'green', 'yellow'],
+            colorMap: {
+                'red': '#ef4444',
+                'blue': '#3b82f6',
+                'green': '#10b981',
+                'yellow': '#f59e0b'
+            }
+        };
+
+        
+        let reactionTest = {
+            round: 0,
+            times: [],
+            startTime: null,
+            timeout: null,
+            isWaiting: false,
+            state: 'ready' 
+        };
+
+        
+        let patternGame = {
+            round: 0,
+            score: 0,
+            currentPattern: [],
+            timer: null,
+            timeLeft: 45,
+            patterns: [
+                {sequence: ['🔴', '🔵', '🔴', '🔵', '🔴', '🔵'], answer: '🔴'},
+                {sequence: ['⭐', '⭐⭐', '⭐⭐⭐', '⭐⭐⭐⭐'], answer: '⭐⭐⭐⭐⭐'},
+                {sequence: ['🟢', '🟡', '🔴', '🟢', '🟡', '🔴'], answer: '🟢'},
+                {sequence: ['1️⃣', '2️⃣', '4️⃣', '8️⃣'], answer: '1️⃣6️⃣'},
+                {sequence: ['🔺', '🔻', '🔺', '🔻', '🔺'], answer: '🔻'},
+                {sequence: ['🌙', '🌙🌙', '🌙🌙🌙'], answer: '🌙🌙🌙🌙'},
+                {sequence: ['🔥', '💧', '🔥', '💧', '🔥'], answer: '💧'},
+                {sequence: ['🎯', '🎯🎯', '🎯🎯🎯', '🎯🎯🎯🎯'], answer: '🎯🎯🎯🎯🎯'},
+                {sequence: ['🟦', '🟨', '🟦', '🟨', '🟦'], answer: '🟨'},
+                {sequence: ['⚡', '⚡⚡', '⚡⚡⚡'], answer: '⚡⚡⚡⚡'}
+            ]
+        };
+
+    
+        let wordGame = {
+            round: 0,
+            score: 0,
+            currentWord: '',
+            timer: null,
+            timeLeft: 60,
+            words: ['OCEAN', 'FIRE', 'MOUNTAIN', 'MUSIC', 'BOOK', 'STAR', 'FLOWER', 'RAIN', 'DREAM', 'LIGHT'],
+            associations: {
+                'OCEAN': ['water', 'blue', 'waves', 'sea', 'fish', 'deep', 'salt', 'beach'],
+                'FIRE': ['hot', 'red', 'burn', 'flame', 'heat', 'smoke', 'warm', 'light'],
+                'MOUNTAIN': ['high', 'peak', 'climb', 'snow', 'rock', 'tall', 'summit', 'hill'],
+                'MUSIC': ['sound', 'song', 'melody', 'rhythm', 'note', 'beat', 'harmony', 'dance'],
+                'BOOK': ['read', 'page', 'story', 'word', 'knowledge', 'learn', 'paper', 'text'],
+                'STAR': ['bright', 'night', 'sky', 'shine', 'space', 'twinkle', 'galaxy', 'moon'],
+                'FLOWER': ['bloom', 'petal', 'garden', 'color', 'smell', 'beauty', 'spring', 'rose'],
+                'RAIN': ['water', 'drop', 'cloud', 'wet', 'storm', 'umbrella', 'puddle', 'weather'],
+                'DREAM': ['sleep', 'night', 'imagine', 'fantasy', 'vision', 'hope', 'wish', 'mind'],
+                'LIGHT': ['bright', 'shine', 'lamp', 'sun', 'glow', 'illuminate', 'beam', 'bulb']
+            }
+        };
+
+       
+        const quotes = [
+            "Excellent work! Your cognitive fitness is improving with every session! 🧠✨",
+            "Outstanding performance! Keep challenging your mind to reach new heights! 🚀",
+            "Brilliant! Your mental agility and focus are getting stronger! 💪",
+            "Fantastic progress! Consistent training leads to remarkable results! 🌟",
+            "Impressive! Your brain is adapting and growing with each challenge! 🎯",
+            "Superb effort! You're building powerful cognitive pathways! ⚡",
+            "Amazing! Your dedication to brain training is truly paying off! 🏆",
+            "Wonderful! Every session makes your mind sharper and more resilient! 💎",
+            "Incredible! You're developing the mental strength of a champion! 👑",
+            "Perfect! Your cognitive fitness journey is inspiring and effective! 🌈"
+        ];
+
+      
+        function init() {
+            loadStats();
+            updateDashboard();
+            showDashboard();
+        }
+
+     
+        function saveStats() {
+            localStorage.setItem('PranAriseCognitiveStats', JSON.stringify(gameState.stats));
+        }
+
+        function loadStats() {
+            const saved = localStorage.getItem('PranAriseCognitiveStats');
+            if (saved) {
+                gameState.stats = JSON.parse(saved);
+            }
+        }
+
+        function resetStats() {
+            if (confirm('Are you sure you want to reset all your cognitive training progress? This action cannot be undone.')) {
+                gameState.stats = {
+                    totalGames: 0,
+                    bestMemoryScore: 0,
+                    bestMathScore: 0,
+                    bestStroopScore: 0,
+                    bestPatternScore: 0,
+                    reactionTimes: [],
+                    avgReactionTime: 0
+                };
+                saveStats();
+                updateDashboard();
+            }
+        }
+
+  
+        function showDashboard() {
+            hideAllScreens();
+            document.getElementById('dashboard').style.display = 'block';
+            gameState.currentGame = 'dashboard';
+            updateDashboard();
+        }
+
+        function updateDashboard() {
+            document.getElementById('totalGames').textContent = gameState.stats.totalGames;
+            document.getElementById('bestMemory').textContent = gameState.stats.bestMemoryScore;
+            document.getElementById('bestMath').textContent = gameState.stats.bestMathScore + '%';
+            document.getElementById('bestStroop').textContent = gameState.stats.bestStroopScore + '%';
+            document.getElementById('bestPattern').textContent = gameState.stats.bestPatternScore + '%';
+            
+            const avgReaction = gameState.stats.reactionTimes.length > 0
+                ? Math.round(gameState.stats.reactionTimes.reduce((a, b) => a + b, 0) / gameState.stats.reactionTimes.length)
+                : 0;
+            document.getElementById('avgReaction').textContent = avgReaction + 'ms';
+        }
+
+        function hideAllScreens() {
+            const screens = ['dashboard', 'memoryGame', 'mathQuiz', 'stroopTest', 'reactionTest', 'patternGame', 'wordGame'];
+            screens.forEach(screen => {
+                document.getElementById(screen).style.display = 'none';
+            });
+        }
+
+        function startMemoryGame() {
+            hideAllScreens();
+            document.getElementById('memoryGame').style.display = 'block';
+            document.getElementById('memoryResults').style.display = 'none';
+            
+         
+            memoryGame = {
+                cards: [],
+                flippedCards: [],
+                matchedPairs: 0,
+                moves: 0,
+                startTime: Date.now(),
+                timer: null
+            };
+
+            
+            const symbols = ['🎯', '🌟', '🔥', '💎', '🚀', '⚡', '🎨', '🎵'];
+            const cardPairs = [...symbols, ...symbols];
+            
+           
+            for (let i = cardPairs.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cardPairs[i], cardPairs[j]] = [cardPairs[j], cardPairs[i]];
+            }
+
+           
+            memoryGame.cards = cardPairs.map((symbol, index) => ({
+                id: index,
+                symbol: symbol,
+                flipped: false,
+                matched: false
+            }));
+
+     
+            renderMemoryCards();
+            
+          
+            memoryGame.timer = setInterval(updateMemoryTimer, 1000);
+ 
+            updateMemoryUI();
+        }
+
+        function renderMemoryCards() {
+            const grid = document.getElementById('memoryGrid');
+            grid.innerHTML = '';
+            
+            memoryGame.cards.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'memory-card';
+                cardElement.dataset.id = card.id;
+                cardElement.textContent = card.flipped || card.matched ? card.symbol : '?';
+                
+                if (card.flipped) cardElement.classList.add('flipped');
+                if (card.matched) cardElement.classList.add('matched');
+                
+                cardElement.addEventListener('click', () => flipCard(card.id));
+                grid.appendChild(cardElement);
+            });
+        }
+
+        function flipCard(cardId) {
+            const card = memoryGame.cards[cardId];
+            
+           
+            if (card.flipped || card.matched || memoryGame.flippedCards.length >= 2) {
+                return;
+            }
+
+      
+            card.flipped = true;
+            memoryGame.flippedCards.push(card);
+            memoryGame.moves++;
+            
+            renderMemoryCards();
+            updateMemoryUI();
+
+            if (memoryGame.flippedCards.length === 2) {
+                setTimeout(checkMemoryMatch, 1000);
+            }
+        }
+
+        function checkMemoryMatch() {
+            const [card1, card2] = memoryGame.flippedCards;
+            
+            if (card1.symbol === card2.symbol) {
+               
+                card1.matched = true;
+                card2.matched = true;
+                memoryGame.matchedPairs++;
+                
+                if (memoryGame.matchedPairs === 8) {
+                    endMemoryGame();
+                }
+            } else {
+                
+                card1.flipped = false;
+                card2.flipped = false;
+            }
+            
+            memoryGame.flippedCards = [];
+            renderMemoryCards();
+            updateMemoryUI();
+        }
+
+        function updateMemoryTimer() {
+            const elapsed = Math.floor((Date.now() - memoryGame.startTime) / 1000);
+            document.getElementById('memoryTime').textContent = elapsed;
+        }
+
+        function updateMemoryUI() {
+            document.getElementById('memoryMoves').textContent = memoryGame.moves;
+            document.getElementById('memoryPairs').textContent = memoryGame.matchedPairs;
+        }
+
+        function endMemoryGame() {
+            clearInterval(memoryGame.timer);
+            const timeElapsed = Math.floor((Date.now() - memoryGame.startTime) / 1000);
+            
+            const score = Math.max(1000 - (memoryGame.moves * 10) - (timeElapsed * 5), 100);
+            
+            if (score > gameState.stats.bestMemoryScore) {
+                gameState.stats.bestMemoryScore = score;
+            }
+            gameState.stats.totalGames++;
+            saveStats();
+            
+            document.getElementById('memoryScore').textContent = score;
+            document.getElementById('memoryStars').textContent = getStars(score, 800);
+            document.getElementById('memoryQuote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('memoryResults').style.display = 'block';
+        }
+
+        function startMathQuiz() {
+            hideAllScreens();
+            document.getElementById('mathQuiz').style.display = 'block';
+            document.getElementById('mathResults').style.display = 'none';
+           
+            mathQuiz = {
+                questions: [],
+                currentQuestion: 0,
+                score: 0,
+                timer: null,
+                timeLeft: 30,
+                startTime: Date.now()
+            };
+            generateMathQuestions();
+            mathQuiz.timer = setInterval(updateMathTimer, 1000);
+        
+            showMathQuestion();
+        }
+
+        function generateMathQuestions() {
+            mathQuiz.questions = [];
+            
+            for (let i = 0; i < 10; i++) {
+                const operations = ['+', '-', '*'];
+                const operation = operations[Math.floor(Math.random() * operations.length)];
+                
+                let num1, num2, answer;
+                
+                switch (operation) {
+                    case '+':
+                        num1 = Math.floor(Math.random() * 50) + 1;
+                        num2 = Math.floor(Math.random() * 50) + 1;
+                        answer = num1 + num2;
+                        break;
+                    case '-':
+                        num1 = Math.floor(Math.random() * 50) + 25;
+                        num2 = Math.floor(Math.random() * 25) + 1;
+                        answer = num1 - num2;
+                        break;
+                    case '*':
+                        num1 = Math.floor(Math.random() * 12) + 1;
+                        num2 = Math.floor(Math.random() * 12) + 1;
+                        answer = num1 * num2;
+                        break;
+                }
+                
+        
+                const wrongAnswers = [];
+                while (wrongAnswers.length < 3) {
+                    const wrong = answer + Math.floor(Math.random() * 20) - 10;
+                    if (wrong !== answer && wrong > 0 && !wrongAnswers.includes(wrong)) {
+                        wrongAnswers.push(wrong);
+                    }
+                }
+                
+                const options = [answer, ...wrongAnswers];
+                for (let j = options.length - 1; j > 0; j--) {
+                    const k = Math.floor(Math.random() * (j + 1));
+                    [options[j], options[k]] = [options[k], options[j]];
+                }
+                
+                mathQuiz.questions.push({
+                    question: `${num1} ${operation} ${num2}`,
+                    answer: answer,
+                    options: options
+                });
+            }
+        }
+
+        function showMathQuestion() {
+            if (mathQuiz.currentQuestion >= mathQuiz.questions.length) {
+                endMathQuiz();
+                return;
+            }
+            
+            const question = mathQuiz.questions[mathQuiz.currentQuestion];
+            document.getElementById('mathQuestionText').textContent = question.question + ' = ?';
+            
+            const optionsContainer = document.getElementById('mathOptions');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'option-btn';
+                button.textContent = option;
+                button.onclick = () => selectMathAnswer(option);
+                optionsContainer.appendChild(button);
+            });
+            
+         
+            document.getElementById('mathQuestion').textContent = mathQuiz.currentQuestion + 1;
+            document.getElementById('mathScore').textContent = mathQuiz.score;
+            
+            
+            const progress = ((mathQuiz.currentQuestion + 1) / mathQuiz.questions.length) * 100;
+            document.getElementById('mathProgress').style.width = progress + '%';
+        }
+
+        function selectMathAnswer(selectedAnswer) {
+            const question = mathQuiz.questions[mathQuiz.currentQuestion];
+            const buttons = document.querySelectorAll('.option-btn');
+            
+            buttons.forEach(button => {
+                button.disabled = true;
+                if (parseInt(button.textContent) === question.answer) {
+                    button.classList.add('correct');
+                } else if (parseInt(button.textContent) === selectedAnswer && selectedAnswer !== question.answer) {
+                    button.classList.add('incorrect');
+                }
+            });
+            
+            if (selectedAnswer === question.answer) {
+                mathQuiz.score++;
+            }
+            
+            setTimeout(() => {
+                mathQuiz.currentQuestion++;
+                showMathQuestion();
+            }, 1500);
+        }
+
+        function updateMathTimer() {
+            mathQuiz.timeLeft--;
+            document.getElementById('mathTimer').textContent = mathQuiz.timeLeft;
+            
+            if (mathQuiz.timeLeft <= 0) {
+                endMathQuiz();
+            }
+        }
+
+        function endMathQuiz() {
+            clearInterval(mathQuiz.timer);
+            const percentage = Math.round((mathQuiz.score / mathQuiz.questions.length) * 100);
+            
+            if (percentage > gameState.stats.bestMathScore) {
+                gameState.stats.bestMathScore = percentage;
+            }
+            gameState.stats.totalGames++;
+            saveStats();
+          
+            document.getElementById('mathFinalScore').textContent = percentage + '%';
+            document.getElementById('mathStars').textContent = getStars(percentage, 70);
+            document.getElementById('mathQuote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('mathResults').style.display = 'block';
+        }
+
+        
+        function startStroopTest() {
+            hideAllScreens();
+            document.getElementById('stroopTest').style.display = 'block';
+            document.getElementById('stroopResults').style.display = 'none';
+            
+            
+            stroopTest = {
+                round: 0,
+                score: 0,
+                currentWord: '',
+                currentColor: '',
+                correctColor: '',
+                timer: null,
+                timeLeft: 60,
+                startTime: Date.now(),
+                words: ['RED', 'BLUE', 'GREEN', 'YELLOW'],
+                colors: ['red', 'blue', 'green', 'yellow'],
+                colorMap: {
+                    'red': '#ef4444',
+                    'blue': '#3b82f6',
+                    'green': '#10b981',
+                    'yellow': '#f59e0b'
+                }
+            };
+
+            stroopTest.timer = setInterval(updateStroopTimer, 1000);
+            
+            showStroopWord();
+        }
+
+        function showStroopWord() {
+            if (stroopTest.round >= 15 || stroopTest.timeLeft <= 0) {
+                endStroopTest();
+                return;
+            }
+            
+            
+            stroopTest.currentWord = stroopTest.words[Math.floor(Math.random() * stroopTest.words.length)];
+            stroopTest.currentColor = stroopTest.colors[Math.floor(Math.random() * stroopTest.colors.length)];
+            stroopTest.correctColor = stroopTest.currentColor;
+           
+            const wordElement = document.getElementById('stroopWord');
+            wordElement.textContent = stroopTest.currentWord;
+            wordElement.style.color = stroopTest.colorMap[stroopTest.currentColor];
+            
+            document.querySelectorAll('.color-btn').forEach(btn => {
+                btn.classList.remove('correct', 'incorrect');
+                btn.disabled = false;
+            });
+            
+       
+            stroopTest.round++;
+            document.getElementById('stroopRound').textContent = stroopTest.round;
+            document.getElementById('stroopScore').textContent = stroopTest.score;
+            
+          
+            const progress = (stroopTest.round / 15) * 100;
+            document.getElementById('stroopProgress').style.width = progress + '%';
+        }
+
+        function selectColor(selectedColor) {
+            const buttons = document.querySelectorAll('.color-btn');
+            
+            buttons.forEach(button => {
+                button.disabled = true;
+                if (button.classList.contains(stroopTest.correctColor)) {
+                    button.classList.add('correct');
+                } else if (button.classList.contains(selectedColor) && selectedColor !== stroopTest.correctColor) {
+                    button.classList.add('incorrect');
+                }
+            });
+            
+            if (selectedColor === stroopTest.correctColor) {
+                stroopTest.score++;
+            }
+            
+            setTimeout(() => {
+                showStroopWord();
+            }, 1000);
+        }
+
+        function updateStroopTimer() {
+            stroopTest.timeLeft--;
+            document.getElementById('stroopTimer').textContent = stroopTest.timeLeft;
+            
+            if (stroopTest.timeLeft <= 0) {
+                endStroopTest();
+            }
+        }
+
+        function endStroopTest() {
+            clearInterval(stroopTest.timer);
+            const percentage = Math.round((stroopTest.score / stroopTest.round) * 100);
+            
+           
+            if (percentage > gameState.stats.bestStroopScore) {
+                gameState.stats.bestStroopScore = percentage;
+            }
+            gameState.stats.totalGames++;
+            saveStats();
+            
+            
+            document.getElementById('stroopFinalScore').textContent = percentage + '%';
+            document.getElementById('stroopStars').textContent = getStars(percentage, 70);
+            document.getElementById('stroopQuote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('stroopResults').style.display = 'block';
+        }
+
+      
+        function startReactionTest() {
+            hideAllScreens();
+            document.getElementById('reactionTest').style.display = 'block';
+            document.getElementById('reactionResults').style.display = 'none';
+            
+           
+            reactionTest = {
+                round: 1,
+                times: [],
+                startTime: null,
+                timeout: null,
+                isWaiting: false,
+                state: 'ready'
+            };
+
+            document.getElementById('reactionRound').textContent = '1';
+            document.getElementById('reactionBest').textContent = '0ms';
+            
+            const area = document.getElementById('reactionArea');
+            area.className = 'reaction-area reaction-waiting';
+            area.textContent = 'Round 1/5: Click here when ready, then wait for GREEN!';
+        }
+
+        function handleReactionClick() {
+            const area = document.getElementById('reactionArea');
+            
+            if (reactionTest.state === 'ready') {
+                reactionTest.state = 'waiting';
+                reactionTest.isWaiting = true;
+                area.className = 'reaction-area reaction-waiting';
+                area.textContent = `Round ${reactionTest.round}/5: Wait for GREEN... DON'T CLICK YET!`;
+                
+                const delay = Math.random() * 4000 + 2000;
+                reactionTest.timeout = setTimeout(() => {
+                    if (reactionTest.state === 'waiting') {
+                        reactionTest.state = 'green';
+                        reactionTest.startTime = Date.now();
+                        area.className = 'reaction-area reaction-ready';
+                        area.textContent = '🟢 CLICK NOW! 🟢';
+                    }
+                }, delay);
+                
+            } else if (reactionTest.state === 'waiting') {
+                
+                clearTimeout(reactionTest.timeout);
+                reactionTest.state = 'ready';
+                area.className = 'reaction-area reaction-waiting';
+                area.textContent = `Round ${reactionTest.round}/5: Too early! Click to try again.`;
+                
+            } else if (reactionTest.state === 'green') {
+                
+                const reactionTime = Date.now() - reactionTest.startTime;
+                reactionTest.times.push(reactionTime);
+                
+                area.className = 'reaction-area reaction-clicked';
+                area.textContent = `${reactionTime}ms - ${getReactionFeedback(reactionTime)}`;
+            
+                const best = reactionTest.times.length > 0 ? Math.min(...reactionTest.times) : reactionTime;
+                document.getElementById('reactionBest').textContent = best + 'ms';
+         
+                if (reactionTest.round >= 5) {
+                    setTimeout(endReactionTest, 2500);
+                } else {
+                    setTimeout(() => {
+                        reactionTest.round++;
+                        reactionTest.state = 'ready';
+                        document.getElementById('reactionRound').textContent = reactionTest.round;
+                        area.className = 'reaction-area reaction-waiting';
+                        area.textContent = `Round ${reactionTest.round}/5: Click here when ready for next round!`;
+                    }, 2500);
+                }
+            }
+        }
+
+        function getReactionFeedback(time) {
+            if (time < 200) return "Lightning fast! ⚡";
+            if (time < 250) return "Excellent! 🎯";
+            if (time < 300) return "Great! 👍";
+            if (time < 400) return "Good! 👌";
+            if (time < 500) return "Not bad! 🙂";
+            return "Keep practicing! 💪";
+        }
+
+        function endReactionTest() {
+            if (reactionTest.times.length === 0) {
+            
+                document.getElementById('reactionAverage').textContent = '0ms';
+                document.getElementById('reactionStars').textContent = '';
+                document.getElementById('reactionQuote').textContent = 'Keep practicing! Every attempt makes you faster! 💪';
+            } else {
+                const average = Math.round(reactionTest.times.reduce((a, b) => a + b, 0) / reactionTest.times.length);
+                const best = Math.min(...reactionTest.times);
+     
+                gameState.stats.reactionTimes = [...gameState.stats.reactionTimes, ...reactionTest.times];
+                if (gameState.stats.reactionTimes.length > 50) {
+                    gameState.stats.reactionTimes = gameState.stats.reactionTimes.slice(-50);
+                }
+      
+                document.getElementById('reactionAverage').textContent = average + 'ms avg';
+                document.getElementById('reactionStars').textContent = getStars(Math.max(0, 500 - average), 200);
+                
+                let quote = quotes[Math.floor(Math.random() * quotes.length)];
+                if (average < 250) {
+                    quote = "🚀 Incredible reflexes! You're in the top 10% of reaction speeds!";
+                } else if (average < 300) {
+                    quote = "⚡ Excellent reaction time! Your reflexes are sharp and ready!";
+                } else if (average < 400) {
+                    quote = "👍 Good work! Keep training to sharpen those lightning-fast reflexes!";
+                }
+                document.getElementById('reactionQuote').textContent = quote;
+            }
+            
+            gameState.stats.totalGames++;
+            saveStats();
+            document.getElementById('reactionResults').style.display = 'block';
+        }
+
+
+        function startPatternGame() {
+            hideAllScreens();
+            document.getElementById('patternGame').style.display = 'block';
+            document.getElementById('patternResults').style.display = 'none';
+        
+            patternGame = {
+                round: 0,
+                score: 0,
+                currentPattern: [],
+                timer: null,
+                timeLeft: 45,
+                patterns: [
+                    {sequence: ['🔴', '🔵', '🔴', '🔵', '🔴'], answer: '🔵'},
+                    {sequence: ['⭐', '⭐⭐', '⭐⭐⭐'], answer: '⭐⭐⭐⭐'},
+                    {sequence: ['🟢', '🟡', '🔴', '🟢', '🟡'], answer: '🔴'},
+                    {sequence: ['🔺', '🔻', '🔺', '🔻'], answer: '🔺'},
+                    {sequence: ['🌙', '🌙🌙', '🌙🌙🌙'], answer: '🌙🌙🌙🌙'},
+                    {sequence: ['🔥', '💧', '🔥', '💧'], answer: '🔥'},
+                    {sequence: ['🎯', '🎯🎯', '🎯🎯🎯'], answer: '🎯🎯🎯🎯'},
+                    {sequence: ['🟦', '🟨', '🟦', '🟨'], answer: '🟦'},
+                    {sequence: ['⚡', '⚡⚡', '⚡⚡⚡'], answer: '⚡⚡⚡⚡'},
+                    {sequence: ['💎', '💎💎', '💎💎💎'], answer: '💎💎💎💎'}
+                ]
+            };
+
+            patternGame.timer = setInterval(updatePatternTimer, 1000);
+         
+            showPattern();
+        }
+
+        function showPattern() {
+            if (patternGame.round >= patternGame.patterns.length || patternGame.timeLeft <= 0) {
+                endPatternGame();
+                return;
+            }
+            
+            const pattern = patternGame.patterns[patternGame.round];
+            const grid = document.getElementById('patternGrid');
+            grid.innerHTML = '';
+            
+           
+            const allItems = [...pattern.sequence, '?'];
+            
+            allItems.forEach((item, index) => {
+                const element = document.createElement('div');
+                element.className = 'pattern-item';
+                element.textContent = item;
+                
+                if (item === '?') {
+                    element.style.cursor = 'pointer';
+                    element.onclick = () => selectPatternAnswer();
+                }
+                
+                grid.appendChild(element);
+            });
+            
+           
+            const options = [pattern.answer];
+            const allSymbols = ['🔴', '🔵', '🟢', '🟡', '⭐', '🔺', '🔻', '🌙', '🔥', '💧', '🎯', '🟦', '🟨', '⚡', '💎'];
+            
+            while (options.length < 3) {
+                const randomSymbol = allSymbols[Math.floor(Math.random() * allSymbols.length)];
+                if (!options.includes(randomSymbol)) {
+                    options.push(randomSymbol);
+                }
+            }
+            
+          
+            for (let i = options.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [options[i], options[j]] = [options[j], options[i]];
+            }
+            
+            patternGame.currentOptions = options;
+            patternGame.correctAnswer = pattern.answer;
+            
+     
+            patternGame.round++;
+            document.getElementById('patternRound').textContent = patternGame.round;
+            document.getElementById('patternScore').textContent = patternGame.score;
+            
+           
+            const progress = (patternGame.round / patternGame.patterns.length) * 100;
+            document.getElementById('patternProgress').style.width = progress + '%';
+        }
+
+        function selectPatternAnswer() {
+            const grid = document.getElementById('patternGrid');
+            const questionMark = grid.querySelector('.pattern-item:last-child');
+            
+      
+            questionMark.innerHTML = '';
+            questionMark.style.display = 'flex';
+            questionMark.style.flexDirection = 'column';
+            questionMark.style.gap = '5px';
+            questionMark.style.fontSize = '1rem';
+            
+            patternGame.currentOptions.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.style.background = 'rgba(59, 130, 246, 0.1)';
+                button.style.border = '1px solid rgba(59, 130, 246, 0.3)';
+                button.style.borderRadius = '8px';
+                button.style.color = '#f8fafc';
+                button.style.padding = '5px';
+                button.style.cursor = 'pointer';
+                button.onclick = () => checkPatternAnswer(option);
+                questionMark.appendChild(button);
+            });
+        }
+
+        function checkPatternAnswer(selectedAnswer) {
+            if (selectedAnswer === patternGame.correctAnswer) {
+                patternGame.score++;
+            }
+            
+            setTimeout(() => {
+                showPattern();
+            }, 1500);
+        }
+
+        function updatePatternTimer() {
+            patternGame.timeLeft--;
+            document.getElementById('patternTimer').textContent = patternGame.timeLeft;
+            
+            if (patternGame.timeLeft <= 0) {
+                endPatternGame();
+            }
+        }
+
+        function endPatternGame() {
+            clearInterval(patternGame.timer);
+            const percentage = Math.round((patternGame.score / patternGame.round) * 100);
+            
+            if (percentage > gameState.stats.bestPatternScore) {
+                gameState.stats.bestPatternScore = percentage;
+            }
+            gameState.stats.totalGames++;
+            saveStats();
+          
+            document.getElementById('patternFinalScore').textContent = percentage + '%';
+            document.getElementById('patternStars').textContent = getStars(percentage, 70);
+            document.getElementById('patternQuote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('patternResults').style.display = 'block';
+        }
+
+
+        function startWordGame() {
+            hideAllScreens();
+            document.getElementById('wordGame').style.display = 'block';
+            document.getElementById('wordResults').style.display = 'none';
+            
+         
+            wordGame = {
+                round: 0,
+                score: 0,
+                currentWord: '',
+                timer: null,
+                timeLeft: 60,
+                words: ['OCEAN', 'FIRE', 'MOUNTAIN', 'MUSIC', 'BOOK', 'STAR', 'FLOWER', 'RAIN', 'DREAM', 'LIGHT'],
+                associations: {
+                    'OCEAN': ['water', 'blue', 'waves', 'sea', 'fish', 'deep', 'salt', 'beach'],
+                    'FIRE': ['hot', 'red', 'burn', 'flame', 'heat', 'smoke', 'warm', 'light'],
+                    'MOUNTAIN': ['high', 'peak', 'climb', 'snow', 'rock', 'tall', 'summit', 'hill'],
+                    'MUSIC': ['sound', 'song', 'melody', 'rhythm', 'note', 'beat', 'harmony', 'dance'],
+                    'BOOK': ['read', 'page', 'story', 'word', 'knowledge', 'learn', 'paper', 'text'],
+                    'STAR': ['bright', 'night', 'sky', 'shine', 'space', 'twinkle', 'galaxy', 'moon'],
+                    'FLOWER': ['bloom', 'petal', 'garden', 'color', 'smell', 'beauty', 'spring', 'rose'],
+                    'RAIN': ['water', 'drop', 'cloud', 'wet', 'storm', 'umbrella', 'puddle', 'weather'],
+                    'DREAM': ['sleep', 'night', 'imagine', 'fantasy', 'vision', 'hope', 'wish', 'mind'],
+                    'LIGHT': ['bright', 'shine', 'lamp', 'sun', 'glow', 'illuminate', 'beam', 'bulb']
+                }
+            };
+
+            
+            wordGame.timer = setInterval(updateWordTimer, 1000);
+            
+        
+            showWord();
+            
+
+            const input = document.getElementById('wordInput');
+            input.value = '';
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    submitWord();
+                }
+            });
+        }
+
+        function showWord() {
+            if (wordGame.round >= wordGame.words.length || wordGame.timeLeft <= 0) {
+                endWordGame();
+                return;
+            }
+            
+            wordGame.currentWord = wordGame.words[wordGame.round];
+            document.getElementById('wordDisplay').textContent = wordGame.currentWord;
+            document.getElementById('wordInput').value = '';
+            document.getElementById('wordInput').focus();
+            
+           
+            wordGame.round++;
+            document.getElementById('wordRound').textContent = wordGame.round;
+            document.getElementById('wordScore').textContent = wordGame.score;
+            
+            
+            const progress = (wordGame.round / wordGame.words.length) * 100;
+            document.getElementById('wordProgress').style.width = progress + '%';
+        }
+
+        function submitWord() {
+            const input = document.getElementById('wordInput');
+            const userWord = input.value.toLowerCase().trim();
+            
+            if (userWord.length === 0) return;
+          
+            const associations = wordGame.associations[wordGame.currentWord];
+            if (associations.includes(userWord) || userWord === wordGame.currentWord.toLowerCase()) {
+                wordGame.score++;
+            }
+            
+            setTimeout(() => {
+                showWord();
+            }, 500);
+        }
+
+        function updateWordTimer() {
+            wordGame.timeLeft--;
+            document.getElementById('wordTimer').textContent = wordGame.timeLeft;
+            
+            if (wordGame.timeLeft <= 0) {
+                endWordGame();
+            }
+        }
+
+        function endWordGame() {
+            clearInterval(wordGame.timer);
+            const percentage = Math.round((wordGame.score / wordGame.round) * 100);
+            
+          
+            gameState.stats.totalGames++;
+            saveStats();
+            
+            document.getElementById('wordFinalScore').textContent = percentage + '%';
+            document.getElementById('wordStars').textContent = getStars(percentage, 60);
+            document.getElementById('wordQuote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('wordResults').style.display = 'block';
+        }
+
+        function getStars(score, threshold) {
+            if (score >= threshold + 20) return '⭐⭐⭐';
+            if (score >= threshold) return '⭐⭐';
+            if (score >= threshold - 20) return '⭐';
+            return '';
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
