@@ -1,1 +1,9 @@
-node_modules
+
+# Ignore Python AI script
+ai.py
+
+# Ignore environment file
+.env
+
+# Ignore Bun lock file
+bun.lockb
