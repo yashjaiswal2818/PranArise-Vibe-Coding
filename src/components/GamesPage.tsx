@@ -113,6 +113,15 @@ const GamesPage: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-slate-900 dark:via-blue-900 dark:to-purple-900 p-6 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
+                <motion.div>
+          <a
+            href="/cognitive.html"
+            target="_blank"
+            className="px-8 py-4 mt-4 bg-gradient-to-r from-purple-500 to-blue-600 text-white rounded-lg font-medium hover:scale-105 transition-transform inline-flex items-center space-x-2"
+          >
+            <span>Try Cognitive Games</span>
+          </a>
+        </motion.div>
         <motion.div
           className="mb-8 text-center"
           initial={{ opacity: 0, y: -20 }}
