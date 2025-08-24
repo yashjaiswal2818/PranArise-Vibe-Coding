@@ -7,3 +7,4 @@ ai.py
 
 # Ignore Bun lock file
 bun.lockb
+node_modules
